@@ -15,6 +15,12 @@ namespace test
             //Console.WriteLine($"{a}, {b}, {a/b}");
             divideInts(a,b);
             getSafeInt();
+
+            int[] numbers = new int[5] { 1, 2, 3, 4, 5};
+            int length = numbers.Length; 
+
+            var sum = sumOfNumbers(numbers, length);
+            Console.WriteLine(sum);
         }
         public static int divideInts(int a, int b)
         {
@@ -57,12 +63,27 @@ namespace test
         }
         public static int sumOfNumbers(int[] numbers, int length)
         {
-            int total = 0;
-            foreach (var num in numbers)
+            try
             {
-                total += num;
+                if (length == numbers.Length)
+                {
+                    int total = 0;
+                    foreach (var num in numbers)
+                    {
+                        total += num;
+                    }
+                    return total;
+                } 
+                else 
+                {
+                    throw new IndexOutOfRangeException();
+                } 
             }
-            return total;
+            catch (IndexOutOfRangeException)
+                {
+                    Console.WriteLine("The lengths did not match");
+                    return 0; 
+                }    
         }
     }
 }
